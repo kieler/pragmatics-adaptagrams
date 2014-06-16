@@ -6,6 +6,7 @@
     <groupId>de.cau.cs.kieler</groupId>
     <artifactId>plugins</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../../../pragmatics/plugins/pom.xml</relativePath>
   </parent>
   <groupId>de.cau.cs.kieler</groupId>
   <artifactId>org.adaptagrams</artifactId>
