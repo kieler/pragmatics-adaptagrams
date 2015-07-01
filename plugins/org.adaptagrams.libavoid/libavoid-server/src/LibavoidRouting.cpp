@@ -10,7 +10,7 @@
  * http://www.informatik.uni-kiel.de/rtsys/kieler/
  *
  * Copyright 2013 by
- * + Christian-Albrechts-University of Kiel
+ * + Kiel University
  *   + Department of Computer Science
  *     + Real-Time and Embedded Systems Group
  *
@@ -221,16 +221,16 @@ void addPort(vector<string> &tokens, vector<Avoid::ShapeConnectionPin*> &pins,
 
     // create the pin with proper setup
     if (side == PORT_SIDE_NORTH) {
-        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, relX, Avoid::ATTACH_POS_TOP,
+        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, relX, Avoid::ATTACH_POS_TOP, 0,
                 Avoid::ConnDirUp);
     } else if (side == PORT_SIDE_EAST) {
-        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, Avoid::ATTACH_POS_RIGHT, relY,
+        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, Avoid::ATTACH_POS_RIGHT, relY, 0,
                 Avoid::ConnDirRight);
     } else if (side == PORT_SIDE_SOUTH) {
-        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, relX, Avoid::ATTACH_POS_BOTTOM,
+        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, relX, Avoid::ATTACH_POS_BOTTOM, 0,
                 Avoid::ConnDirDown);
     } else { // (side == PORT_SIDE_WEST) {
-        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, Avoid::ATTACH_POS_LEFT, relY,
+        pin = new Avoid::ShapeConnectionPin(shapeRef, portId, Avoid::ATTACH_POS_LEFT, relY, 0,
                 Avoid::ConnDirLeft);
     }
 

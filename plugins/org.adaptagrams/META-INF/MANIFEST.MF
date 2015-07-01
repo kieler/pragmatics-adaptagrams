@@ -10,4 +10,4 @@ Export-Package: org.adaptagrams
 Bundle-ClassPath: .,
  lib/adaptagrams.jar
 Bundle-ActivationPolicy: lazy
-Bundle-Vendor: Christian-Albrechts-Universität zu Kiel
+Bundle-Vendor: Kiel University
