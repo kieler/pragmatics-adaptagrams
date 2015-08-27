@@ -79,6 +79,9 @@ void HandleRequest(chunk_istream& stream, ostream& out) {
     Avoid::ConnType connectorType = Avoid::ConnType_PolyLine;
     std::string direction = DIRECTION_UNDEFINED;
 
+	// should we print debug information?
+	bool debug = false;
+
     // read graph from stdin
     for (std::string line; std::getline(std::cin, line);) {
 
@@ -144,6 +147,9 @@ void HandleRequest(chunk_istream& stream, ostream& out) {
 
             addEdge(tokens, connectorType, shapes, cons, router, direction);
 
+		} else if (tokens[0] == "DEBUG") {
+			debug = true;
+
         } else if (tokens.at(0) == "GRAPHEND") {
             break;
         } else {
@@ -170,6 +176,10 @@ void HandleRequest(chunk_istream& stream, ostream& out) {
     double elapsedTime = (t2.QuadPart - t1.QuadPart) * 1000.0 / frequency.QuadPart;
     cout << "DEBUG Execution time edge routing: " << elapsedTime << "ms." << endl;
 #endif
+
+	if (debug) {
+		router->outputInstanceToSVG();
+	}
 
     // write the layout to std out
     writeLayout(cout, cons);
