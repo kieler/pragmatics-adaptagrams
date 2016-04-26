@@ -41,10 +41,12 @@
  * Edge Routing
  */
 #define EDGE_ROUTING                "de.cau.cs.kieler.edgeRouting"
+#define EDGE_ROUTING_ELK            "org.eclipse.elk.edgeRouting"
 #define EDGE_ROUTING_POLYLINE       "POLYLINE"
 #define EDGE_ROUTING_ORTHOGONAL     "ORTHOGONAL"
 
 #define DIRECTION                   "de.cau.cs.kieler.direction"
+#define DIRECTION_ELK				"org.eclipse.elk.direction"
 #define DIRECTION_UNDEFINED         "UNDEFINED"
 #define DIRECTION_UP                "UP"
 #define DIRECTION_RIGHT             "RIGHT"

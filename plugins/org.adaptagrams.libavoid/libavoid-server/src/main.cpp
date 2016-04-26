@@ -102,7 +102,7 @@ void HandleRequest(chunk_istream& stream, ostream& out) {
         } else if (tokens[0] == "OPTION") {
 
             /* General options */
-            if (tokens[1] == EDGE_ROUTING) {
+            if (tokens[1] == EDGE_ROUTING || tokens[1] == EDGE_ROUTING_ELK) {
 				if (router) {
 					// possibly delete an old router
 					delete router;
@@ -116,7 +116,7 @@ void HandleRequest(chunk_istream& stream, ostream& out) {
 					router = new Avoid::Router(Avoid::OrthogonalRouting);
                     connectorType = Avoid::ConnType_Orthogonal;
                 }
-            } else if (tokens[1] == DIRECTION) {
+            } else if (tokens[1] == DIRECTION || tokens[1] == DIRECTION_ELK) {
                 // layout direction
                 direction = tokens[2];
             }
