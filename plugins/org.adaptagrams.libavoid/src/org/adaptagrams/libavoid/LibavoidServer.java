@@ -90,7 +90,7 @@ public class LibavoidServer {
     /** the watcher thread used to cancel a blocked read operation. */
     private Watchdog watchdog;
     /** the input stream given by the Libavoid process. */
-    private InputStream ogdfStream;
+    private InputStream libavoidStream;
     /** a temporary file that should be removed after closing the process. */
     private File tempFile;
 
@@ -222,7 +222,7 @@ public class LibavoidServer {
                 }
                 process = Runtime.getRuntime().exec(new String[] { executable });
             } catch (IOException exception) {
-                throw new LibavoidServerException("Failed to start ogdf server process.", exception);
+                throw new LibavoidServerException("Failed to start libavoid server process.", exception);
             } finally {
                 if (process == null) {
                     cleanup(Cleanup.STOP);
@@ -252,11 +252,11 @@ public class LibavoidServer {
         if (process != null) {
             synchronized (nextJob) {
                 // create an input stream and make it visible to the watcher thread
-                ogdfStream = process.getInputStream();
+                libavoidStream = process.getInputStream();
                 // wake the watcher, which will then sleep until a timeout occurs
                 nextJob.notify();
             }
-            return ogdfStream;
+            return libavoidStream;
         }
         throw new IllegalStateException("Libavoid server has not been initialized.");
     }
@@ -401,7 +401,7 @@ public class LibavoidServer {
 
         synchronized (nextJob) {
             // reset the stream to indicate that the job is done
-            ogdfStream = null;
+            libavoidStream = null;
             if (watchdog != null) {
                 Watchdog myWatchdog = watchdog;
                 // if requested, reset the watcher to indicate that it should terminate
@@ -485,7 +485,7 @@ public class LibavoidServer {
             do {
                 synchronized (nextJob) {
                     // the watcher starts working as soon as a stream is made visible
-                    while (ogdfStream == null) {
+                    while (libavoidStream == null) {
                         try {
                             // wait for notification by the main thread
                             nextJob.wait();
@@ -518,7 +518,7 @@ public class LibavoidServer {
                         // timeout has occurred! kill the process so the main thread will wake
                         Process myProcess = process;
                         if (myProcess != null) {
-                            ogdfStream = null;
+                            libavoidStream = null;
                             myProcess.destroy();
                         }
                     }
