@@ -13,7 +13,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(patsubst %.cpp, %.o, $(notdir $(SRCS))))
 
 
 default:
-	@echo "Use one of the targets: osx32, osx64, linux32, linux64, solaris"
+	@echo "Use one of the targets: osx64, linux32, linux64"
 
 
 # compiling all libavoid-server sources
@@ -23,17 +23,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 
 .SECONDEXPANSION:
 	
-#linking all the stuff
+# linking all the stuff
 $(BIN_DIR)/%: $(OBJS)
 	mkdir -p $(@D)
 	$(CC) $(LOPTS) $(LIBS) -o $@ $(OBJS) $(LIBAVOID)/libavoid/.libs/libavoid.a
 
-
-# run this target on a MacOS machine
-osx32: CC = g++ -m32
-osx32: LOPTS = -static-libgcc -static-libstdc++ -mmacosx-version-min=10.5
-osx32: LIBS =
-osx32: $(BIN_DIR)/$$@/$(BIN) $?
 
 # run this target on a MacOS machine
 osx64: CC = g++ -m64
@@ -52,12 +46,6 @@ linux64: CC = g++ -m64
 linux64: LOPTS =
 linux64: LIBS = -lpthread
 linux64: $(BIN_DIR)/$$@/$(BIN) $?
-
-# run this target on a SunOS machine
-solaris: CC = /opt/gnu/pkg/gcc-4.4.2/bin/g++
-solaris: LOPTS = -L/usr/ccs/lib/
-solaris: LIBS = -lmalloc
-solaris: $(BIN_DIR)/$$@/$(BIN) $?
 
 clean: 
 	rm -rf $(BIN_DIR)

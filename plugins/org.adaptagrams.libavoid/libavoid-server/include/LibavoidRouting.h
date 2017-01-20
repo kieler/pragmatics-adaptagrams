@@ -90,11 +90,11 @@
  * arbitrary definition.
  */
 /** Indicates pins that can be used by an arbitrary endpoint of an edge. */
-const unsigned int PIN_ARBITRARY = 0;
+const unsigned int PIN_ARBITRARY = 1;
 /** Indicates pins reserved for incoming edges. */
-const unsigned int PIN_INCOMING = 1;
+const unsigned int PIN_INCOMING = 2;
 /** Indicates pins reserved for outgoing edges. */
-const unsigned int PIN_OUTGOING = 2;
+const unsigned int PIN_OUTGOING = 3;
 
 /**
  * Assembling the graph
